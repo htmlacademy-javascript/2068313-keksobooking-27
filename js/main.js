@@ -1,5 +1,5 @@
 function getRandomNumber(min, max) {
-  if (min < 0 || max < 0 || max < min) {
+  if (min < 0 || max < 0 || max <= min) {
     return NaN;
   }
   return Math.round(Math.random() * (max - min) + min);
@@ -34,8 +34,11 @@ const offer = {
 
 // lng, число с плавающей точкой — долгота, случайное значение от 139.70000 до 139.80000.
 
-const x = getRandomNumberWithPoint(35.65000, 35.70000, 5);
-const y = getRandomNumberWithPoint(139.70000, 139.80000, 5);
+const xMin = 35.65000;
+const xMax = 35.70000;
+
+const yMin = 139.70000;
+const yMax = 139.80000;
 
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
@@ -49,12 +52,12 @@ const createAdd = () => ({
     }`
   },
   location : {
-    lat : `${x}`,
-    lng : `${y}`,
+    lat : `${getRandomNumberWithPoint(xMin, xMax, 5)}`,
+    lng : `${getRandomNumberWithPoint(yMin, yMax, 5)}`,
   },
   offer : {
     title :[getRandomArrayElement(offer.title)],
-    adress : `${x}, ${y}`,
+    adress : `${getRandomNumberWithPoint(xMin, xMax, 5)}, ${getRandomNumberWithPoint(yMin, yMax, 5)}`,
     price : getRandomNumber(1, 10),
     type : [getRandomArrayElement(offer.type)],
     rooms : getRandomNumber(1, 10),
@@ -70,6 +73,8 @@ const createAdd = () => ({
 
 createAdd();
 
-// eslint-disable-next-line no-unused-vars
 const similarAdd = Array.from({length: SIMILAR_ADD_COUNT}, createAdd);
+
+// eslint-disable-next-line no-console
+console.log(similarAdd);
 
