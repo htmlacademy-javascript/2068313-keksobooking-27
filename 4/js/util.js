@@ -15,7 +15,5 @@ function getRandomNumberWithPoint(min, max, amount) {
 
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
-export {getRandomArrayElement};
-export {getRandomNumberWithPoint};
-export {getRandomNumber};
+export {getRandomArrayElement, getRandomNumberWithPoint, getRandomNumber};
 
