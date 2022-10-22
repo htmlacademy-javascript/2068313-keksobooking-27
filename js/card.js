@@ -60,6 +60,4 @@ const renderCard = (arr) => {
 
 canvas.appendChild(renderCard(similarAdd[0]));
 
-export {
-  renderCard
-};
+export {renderCard};

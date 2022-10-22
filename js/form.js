@@ -21,3 +21,4 @@ const formActive = () => {
 };
 
 formActive();
+export {formDisable, formActive};
