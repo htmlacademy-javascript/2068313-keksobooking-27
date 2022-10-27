@@ -29,14 +29,15 @@ const pristineTitle = new Pristine(form, {
   errorTextClass: 'ad-form__element--invalid',
 });
 
-// eslint-disable-next-line no-unused-vars
 const pristinePrice = new Pristine(form, {
   classTo: 'ad-form__element--price',
   errorTextParent: 'ad-form__element--price',
   errorTextClass: 'ad-form__element--invalid',
 });
 
-const pristine = new Pristine(form, {
+const FieldPrice = form.querySelector('#price');
+
+const pristineRoom = new Pristine(form, {
   classTo: 'ad-form__element--room',
   errorTextParent: 'ad-form__element--room',
   errorTextClass: 'ad-form__element--invalid',
@@ -44,6 +45,7 @@ const pristine = new Pristine(form, {
 
 const roomField = form.querySelector('[name="rooms"]');
 const capacityField = form.querySelector('[name="capacity"]');
+
 const roomsCapasityOption = {
   '1' : ['для 1 гостя'],
   '2' : ['для 2 гостей', 'для 1 гостя'],
@@ -65,13 +67,24 @@ function getOptionErrorMessage () {
         `;
 }
 
+pristineRoom.addValidator(roomField, validateroomsCapasityOption, getOptionErrorMessage );
+pristineRoom.addValidator(capacityField, validateroomsCapasityOption, getOptionErrorMessage );
 
-pristine.addValidator(roomField, validateroomsCapasityOption, getOptionErrorMessage );
-pristine.addValidator(capacityField, validateroomsCapasityOption, getOptionErrorMessage );
+
+FieldPrice.addEventListener('input', () => {
+  pristinePrice.validate();
+});
+
+roomField.addEventListener('change', () => {
+  pristineRoom.validate();
+});
+
+capacityField.addEventListener('change', () => {
+  pristineRoom.validate();
+});
 
 form.addEventListener('submit', (evt) => {
-  const isValid = pristineTitle.validate();
-  if (!isValid) {
-    evt.preventDefault();
-  }
+  evt.preventDefault();
+  pristineTitle.validate();
+  pristineRoom.validate();
 });
