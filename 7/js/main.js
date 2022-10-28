@@ -4,4 +4,5 @@ import {similarAdd} from './data.js';
 import {renderCard} from './card.js';
 // eslint-disable-next-line no-unused-vars
 import './form.js';
+import './form-validate.js';
 
