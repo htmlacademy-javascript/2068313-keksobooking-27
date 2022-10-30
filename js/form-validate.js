@@ -46,6 +46,44 @@ pristine.addValidator(
   getRoomsErrorMessage ,
 );
 
+// изменение  минимального значения и плейсхолдера поля «Цена за ночь»
+
+const typeofHouseOption = {
+  'bungalow': '0',
+  'flat' : '1000',
+  'hotel' : '3000',
+  'house' : '5000',
+  'palace' : '10000',
+};
+
+const typeOfHouse = form.querySelector('#type');
+const price = form.querySelector('#price');
+
+const getTypeChange = () => {
+  price.placeholder = typeofHouseOption[typeOfHouse.value];
+  price.min = typeofHouseOption[typeOfHouse.value];
+  price.dataset.pristineMinMessage = `минимальное значение ${typeofHouseOption[typeOfHouse.value]}`;
+};
+
+typeOfHouse.addEventListener('change', getTypeChange);
+
+// «Время заезда», «Время выезда» — выбор опции одного поля автоматически изменяют значение другого
+
+const timeIn = form.querySelector('#timein');
+const timeOut = form.querySelector('#timeout');
+
+const getTimeInChange = () => {
+  timeIn.value = timeOut.value;
+};
+
+const getTimeOutChange = () => {
+  timeOut.value = timeIn.value;
+};
+
+timeIn.addEventListener('change', getTimeOutChange);
+timeOut.addEventListener('change', getTimeInChange);
+
+//////////
 
 capasityField.addEventListener('change', () => {
   pristine.validate(capasityField);
