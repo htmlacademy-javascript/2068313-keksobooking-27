@@ -62,10 +62,12 @@ const price = form.querySelector('#price');
 const getTypeChange = () => {
   price.placeholder = typeofHouseOption[typeOfHouse.value];
   price.min = typeofHouseOption[typeOfHouse.value];
-  price.dataset.pristineMinMessage = `минимальное значение ${typeofHouseOption[typeOfHouse.value]}`;
+  // price.dataset.pristineMinMessage = `минимальное значение ${typeofHouseOption[typeOfHouse.value]}`;
 };
 
+
 typeOfHouse.addEventListener('change', getTypeChange);
+price.addEventListener('change', getTypeChange);
 
 // «Время заезда», «Время выезда» — выбор опции одного поля автоматически изменяют значение другого
 
