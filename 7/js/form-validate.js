@@ -23,9 +23,7 @@ const pristine = new Pristine(form, {
   errorTextClass: 'ad-form__element--invalid',
 }, true);
 
-const validateCapasity = () => {
-  roomsOption[roomField.value].includes(capasityField.value);
-};
+const validateCapasity = () => roomsOption[roomField.value].includes(capasityField.value);
 
 const getCapacityErrorMessage = () =>
   `Для указанного колличества гостей требуется ${capacityOption[capasityField.value].join(' или ')} комнат.`;
