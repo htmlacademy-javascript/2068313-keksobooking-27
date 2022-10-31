@@ -23,9 +23,8 @@ const pristine = new Pristine(form, {
   errorTextClass: 'ad-form__element--invalid',
 }, true);
 
-const validateCapasity = () => {
-  roomsOption[roomField.value].includes(capasityField.value);
-};
+const validateCapasity = () => roomsOption[roomField.value].includes(capasityField.value);
+
 
 const getCapacityErrorMessage = () =>
   `Для указанного колличества гостей требуется ${capacityOption[capasityField.value].join(' или ')} комнат.`;
@@ -62,7 +61,7 @@ const price = form.querySelector('#price');
 const getTypeChange = () => {
   price.placeholder = typeofHouseOption[typeOfHouse.value];
   price.min = typeofHouseOption[typeOfHouse.value];
-  // price.dataset.pristineMinMessage = `минимальное значение ${typeofHouseOption[typeOfHouse.value]}`;
+  price.dataset.pristineMinMessage = `минимальное значение ${typeofHouseOption[typeOfHouse.value]}`;
 };
 
 
