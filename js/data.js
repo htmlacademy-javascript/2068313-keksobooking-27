@@ -28,7 +28,7 @@ const createAdd = () => ({
 
 
   author: {
-    avatar : `${getRandomNumber(0, 10) < 10 ? `img/avatars/user${0}${getRandomNumber(1, 10)}.png` : `img/avatars/user${getRandomNumber(0, 10)}.png}`
+    avatar : `${getRandomNumber(0, 10) < 10 ? `img/avatars/user${0}${getRandomNumber(1, 9)}.png` : `img/avatars/user${getRandomNumber(0, 10)}.png`
     }`
   },
   location : {
