@@ -1,3 +1,5 @@
+import './form-validate.js';
+
 const form = document.querySelector('.ad-form');
 const fieldsets = form.querySelectorAll('fieldset');
 
@@ -20,3 +22,4 @@ const formActive = () => {
 };
 
 formActive();
+
