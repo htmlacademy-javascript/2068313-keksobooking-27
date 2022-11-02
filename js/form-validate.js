@@ -58,15 +58,54 @@ const typeofHouseOption = {
 const typeOfHouse = form.querySelector('#type');
 const price = form.querySelector('#price');
 
-const getTypeChange = () => {
+const getTypePrice = () => {
   price.placeholder = typeofHouseOption[typeOfHouse.value];
   price.min = typeofHouseOption[typeOfHouse.value];
   price.dataset.pristineMinMessage = `минимальное значение ${typeofHouseOption[typeOfHouse.value]}`;
 };
 
+// слайдер
 
-typeOfHouse.addEventListener('change', getTypeChange);
-price.addEventListener('change', getTypeChange);
+const sliderElement = document.querySelector('.ad-form__slider');
+
+const sliderConfig = {
+  min: 0,
+  max: 100000,
+  start : price.placeholder,
+  step: 1,
+};
+
+noUiSlider.create(sliderElement, {
+  range : {
+    min : sliderConfig.min,
+    max : sliderConfig.max,
+  },
+  start : sliderConfig.start,
+  step: sliderConfig.step,
+  connect: 'lower',
+  format: {
+    to: function (value) {
+      if (Number.isInteger(value)) {
+        return value.toFixed(0);
+      }
+    },
+    from: function (value) {
+      return parseFloat(value);
+    },
+  }
+});
+
+
+sliderElement.noUiSlider.on('update', () => {
+  price.value = sliderElement.noUiSlider.get();
+});
+
+typeOfHouse.addEventListener('change', ()=> {
+  getTypePrice();
+  sliderElement.noUiSlider.set(price.placeholder);
+});
+
+price.addEventListener('change', getTypePrice);
 
 // «Время заезда», «Время выезда» — выбор опции одного поля автоматически изменяют значение другого
 
@@ -84,7 +123,7 @@ const getTimeOutChange = () => {
 timeIn.addEventListener('change', getTimeOutChange);
 timeOut.addEventListener('change', getTimeInChange);
 
-//////////
+//////////Вызовы валидации
 
 capasityField.addEventListener('change', () => {
   pristine.validate(capasityField);
@@ -100,3 +139,4 @@ form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
 });
+
