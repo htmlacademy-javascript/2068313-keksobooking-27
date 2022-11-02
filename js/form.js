@@ -2,6 +2,7 @@ import './form-validate.js';
 
 const form = document.querySelector('.ad-form');
 const fieldsets = form.querySelectorAll('fieldset');
+const adress = form.querySelector('#adress');
 
 const formDisable = () => {
   form.classList.add('ad-form--disabled');
@@ -23,3 +24,9 @@ const formActive = () => {
 
 formActive();
 
+
+const setAdress = (coordinates) => {
+  adress.value = `${coordinates.lat}, ${coordinates.lng}`;
+};
+
+export {formActive, formDisable, setAdress};
