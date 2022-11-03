@@ -11,7 +11,7 @@ const offers = similarAdd;
 
 setOnMapLoad(()=> {
   setOnMainPinMove(setAdress);
-  // setAdress(startCoordinate);
+  setAdress(startCoordinate);
   formActive();
   setAdPins(offers);
 });
