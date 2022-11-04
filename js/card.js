@@ -1,6 +1,4 @@
-import {similarAdd} from './data.js';
-
-const canvas = document.querySelector('.map__canvas');
+// const canvas = document.querySelector('.map__canvas');
 
 const template = document.querySelector('#card').content;
 const popup = template.querySelector('.popup');
@@ -57,7 +55,5 @@ const renderCard = (arr) => {
   return fragment;
 };
 
-
-canvas.appendChild(renderCard(similarAdd[0]));
 
 export {renderCard};

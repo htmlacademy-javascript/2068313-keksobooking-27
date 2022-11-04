@@ -1,7 +1,20 @@
-// eslint-disable-next-line no-unused-vars
 import {similarAdd} from './data.js';
-// eslint-disable-next-line no-unused-vars
-import {renderCard} from './card.js';
-// eslint-disable-next-line no-unused-vars
-import './form.js';
+import {formActive, formDisable, setAdress} from'./form.js';
+import {initMap, setOnMapLoad, setOnMainPinMove, setAdPins} from './map.js';
 
+const startCoordinate = {
+  lat: 35.66023,
+  lng: 139.73007,
+};
+
+const offers = similarAdd;
+
+setOnMapLoad(()=> {
+  setOnMainPinMove(setAdress);
+  setAdress(startCoordinate);
+  formActive();
+  setAdPins(offers);
+});
+
+formDisable();
+initMap(startCoordinate);
