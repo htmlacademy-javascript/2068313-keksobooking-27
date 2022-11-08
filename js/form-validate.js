@@ -1,3 +1,5 @@
+import {showAlert} from './popup.js';
+
 const form = document.querySelector('.ad-form');
 const capasityField = form.querySelector('#capacity');
 const roomField = form.querySelector('#room_number');
@@ -58,7 +60,7 @@ const typeofHouseOption = {
 const typeOfHouse = form.querySelector('#type');
 const price = form.querySelector('#price');
 
-const getTypePrice = () => {
+const setTypePrice = () => {
   price.placeholder = typeofHouseOption[typeOfHouse.value];
   price.min = typeofHouseOption[typeOfHouse.value];
   price.dataset.pristineMinMessage = `минимальное значение ${typeofHouseOption[typeOfHouse.value]}`;
@@ -101,11 +103,11 @@ sliderElement.noUiSlider.on('update', () => {
 });
 
 typeOfHouse.addEventListener('change', ()=> {
-  getTypePrice();
+  setTypePrice();
   sliderElement.noUiSlider.set(price.placeholder);
 });
 
-price.addEventListener('change', getTypePrice);
+price.addEventListener('change', setTypePrice);
 
 // «Время заезда», «Время выезда» — выбор опции одного поля автоматически изменяют значение другого
 
@@ -135,8 +137,35 @@ roomField.addEventListener('change', () => {
   pristine.validate(capasityField);
 });
 
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-});
+const setUserFormSubmit = (onSuccess) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
 
+    const isValid = pristine.validate();
+    if (isValid) {
+
+      const formData = new FormData(evt.target);
+
+      fetch(
+        'https://27.javascript.pages.academy/keksobooking',
+        {
+          method: 'POST',
+          body: formData,
+        },
+      )
+        .then((response) => {
+          if (response.ok) {
+            onSuccess();
+          } else {
+            showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+          }
+        })
+        .catch(() => {
+          showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+        });
+    }
+  });
+};
+
+
+export {setUserFormSubmit};
