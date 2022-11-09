@@ -1,6 +1,12 @@
 import { renderCard } from './card.js';
 
+const startCoordinate = {
+  lat: 35.66023,
+  lng: 139.73007,
+};
+
 const OFFERS_COUNT = 10;
+
 const map = L.map('map-canvas');
 const markerGroup = L.layerGroup().addTo(map);
 
@@ -67,7 +73,7 @@ const setOnMapLoad = (cb) => {
 };
 
 const setOnMainPinMove = (cb) => {
-  mainPinMarker.on('moveend', (evt) => cb(evt.target.getLatLng()));
+  mainPinMarker.on('move', (evt) => cb(evt.target.getLatLng()));
 };
 
-export { initMap, setOnMapLoad, setOnMainPinMove, setAdPins};
+export { initMap, setOnMapLoad, setOnMainPinMove, setAdPins, startCoordinate};

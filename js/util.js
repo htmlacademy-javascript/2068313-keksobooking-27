@@ -1,3 +1,5 @@
+const isEscEvent = (evt) => evt.key === ('Escape' || 'Esc');
+
 function getRandomNumber(min, max) {
   if (min < 0 || max < 0 || max <= min) {
     return NaN;
@@ -15,5 +17,5 @@ function getRandomNumberWithPoint(min, max, amount) {
 
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
-export {getRandomArrayElement, getRandomNumberWithPoint, getRandomNumber};
+export {getRandomArrayElement, getRandomNumberWithPoint, getRandomNumber, isEscEvent};
 

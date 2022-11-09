@@ -1,7 +1,5 @@
 import {getRandomArrayElement, getRandomNumberWithPoint, getRandomNumber} from './util.js';
 
-const SIMILAR_ADD_COUNT = 10;
-
 const xMin = 35.65000;
 const xMax = 35.70000;
 
@@ -53,7 +51,4 @@ const createAdd = () => ({
 
 createAdd();
 
-const similarAdd = Array.from({length: SIMILAR_ADD_COUNT}, createAdd);
 
-
-export {similarAdd};

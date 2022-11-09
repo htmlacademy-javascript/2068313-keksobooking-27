@@ -1,20 +1,24 @@
-import {similarAdd} from './data.js';
 import {formActive, formDisable, setAdress} from'./form.js';
-import {initMap, setOnMapLoad, setOnMainPinMove, setAdPins} from './map.js';
+import {initMap, setOnMapLoad, setOnMainPinMove, startCoordinate} from './map.js';
+import {setAdPins} from './map.js';
+import {getData} from './api.js';
+import {setUserFormSubmit} from './form-validate.js';
+import {showAlert, showSuccess, showError} from './popup.js';
 
-const startCoordinate = {
-  lat: 35.66023,
-  lng: 139.73007,
-};
 
-const offers = similarAdd;
-
+////загрузка карты
 setOnMapLoad(()=> {
   setOnMainPinMove(setAdress);
   setAdress(startCoordinate);
   formActive();
-  setAdPins(offers);
 });
 
 formDisable();
 initMap(startCoordinate);
+
+//// получение данных
+getData(setAdPins, showError);
+
+/// отпрака данных
+setUserFormSubmit(showSuccess, showAlert);
+
