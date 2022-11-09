@@ -1,8 +1,9 @@
-import {showAlert} from './popup.js';
+import {sendData} from './api.js';
 
 const form = document.querySelector('.ad-form');
 const capasityField = form.querySelector('#capacity');
 const roomField = form.querySelector('#room_number');
+const submitBtn = form.querySelector('.ad-form__submit');
 
 const roomsOption = {
   1 : ['1'],
@@ -137,35 +138,41 @@ roomField.addEventListener('change', () => {
   pristine.validate(capasityField);
 });
 
-const setUserFormSubmit = (onSuccess) => {
+///// блокировка кнопки при отправке
+
+const blockSubmitButton = () => {
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Сохраняю...';
+};
+
+const unblockSubmitButton = () => {
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'Сохранить';
+};
+
+
+/////отправка данных по кнопке
+
+const setUserFormSubmit = (onSuccess, onFail) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
     const isValid = pristine.validate();
     if (isValid) {
-
-      const formData = new FormData(evt.target);
-
-      fetch(
-        'https://27.javascript.pages.academy/keksobooking',
-        {
-          method: 'POST',
-          body: formData,
+      blockSubmitButton();
+      sendData(
+        () => {
+          onSuccess();
+          unblockSubmitButton();
         },
-      )
-        .then((response) => {
-          if (response.ok) {
-            onSuccess();
-          } else {
-            showAlert('Не удалось отправить форму. Попробуйте ещё раз');
-          }
-        })
-        .catch(() => {
-          showAlert('Не удалось отправить форму. Попробуйте ещё раз');
-        });
+        () => {
+          onFail('Не удалось отправить форму. Попробуйте ещё раз');
+          unblockSubmitButton();
+        },
+        new FormData(evt.target),
+      );
     }
   });
 };
-
 
 export {setUserFormSubmit};

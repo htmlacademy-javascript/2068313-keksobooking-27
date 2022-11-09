@@ -82,5 +82,4 @@ const renderCard = (arr) => {
   return fragment;
 };
 
-
 export {renderCard};

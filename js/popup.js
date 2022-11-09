@@ -33,6 +33,8 @@ const showSuccess = () => {
 
   document.body.appendChild(successPopup);
 
+  document.querySelector('.ad-form').reset();
+
   document.addEventListener('keydown', (evt) => {
     if (isEscEvent(evt)) {
       evt.preventDefault();
