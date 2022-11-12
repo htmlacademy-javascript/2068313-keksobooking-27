@@ -11,7 +11,7 @@ const filterGuestsField = document.querySelector('#housing-guests');
 const filterFeaturesFields = document.querySelectorAll('.map__checkbox');
 const features = document.querySelectorAll('.map__features input');
 
-/// фильтры
+/// сброс фильтра
 const resetFilter = () => {
   filterTypeField.value = DEFAULT_VALUE;
   filterPriceField.value = DEFAULT_VALUE;
@@ -23,26 +23,27 @@ const resetFilter = () => {
   });
 };
 
-const filterType = (ad) => filterTypeField.value === ad.offer.type || filterTypeField.value === DEFAULT_VALUE;
+/// фильтры
+const getFilterType = (ad) => filterTypeField.value === ad.offer.type || filterTypeField.value === DEFAULT_VALUE;
 
-const filterPrice = (ad) => {
+const getFilterPrice = (ad) => {
   switch (filterPriceField.value) {
     case 'any':
       return true;
     case 'low':
-      return ad.offer.price <= PRICE_VALUE.min;
+      return ad.offer.price <= PRICE_VALUE.min || ad.offer.price === DEFAULT_VALUE;
     case 'middle':
-      return ad.offer.price > PRICE_VALUE.min && ad.offer.price <= PRICE_VALUE.max;
+      return ad.offer.price > PRICE_VALUE.min && ad.offer.price <= PRICE_VALUE.max || ad.offer.price === DEFAULT_VALUE;
     case 'high':
-      return ad.offer.price > PRICE_VALUE.max;
+      return ad.offer.price > PRICE_VALUE.max || ad.offer.price === DEFAULT_VALUE;
   }
 };
 
-const filterRooms = (ad) => ad.offer.rooms === +filterRoomsField.value || filterRoomsField.value === DEFAULT_VALUE;
+const getFilterRooms = (ad) => ad.offer.rooms === Number(filterRoomsField.value) || filterRoomsField.value === DEFAULT_VALUE;
 
-const filterGuests = (ad) => ad.offer.guests === +filterGuestsField.value || filterGuestsField.value === DEFAULT_VALUE;
+const getFilterGuests = (ad) => ad.offer.guests === Number(filterGuestsField.value) || filterGuestsField.value === DEFAULT_VALUE;
 
-const filterFeatures = (ad) => Array.from(features)
+const getFilterFeatures = (ad) => Array.from(features)
   .every((feature) => {
     if (!feature.checked) {
       return true;
@@ -55,8 +56,8 @@ const filterFeatures = (ad) => Array.from(features)
 
 /// функция со всеми функциями фильтрации
 
-const filterOffers = (ad) =>
-  filterType(ad) && filterPrice(ad) && filterRooms(ad) && filterGuests(ad) && filterFeatures(ad);
+const getFilterOffers = (ad) =>
+  getFilterType(ad) && getFilterPrice(ad) && getFilterRooms(ad) && getFilterGuests(ad) && getFilterFeatures(ad);
 
 
 /// фуекция обработчик для вскх полей фильтра
@@ -84,4 +85,4 @@ const setChangeEventOnFilter = (cb) => {
   }));
 };
 
-export { resetFilter, setChangeEventOnFilter, filterOffers };
+export { resetFilter, setChangeEventOnFilter, getFilterOffers };
