@@ -31,11 +31,11 @@ const getFilterPrice = (ad) => {
     case 'any':
       return true;
     case 'low':
-      return ad.offer.price <= PRICE_VALUE.min;
+      return ad.offer.price <= PRICE_VALUE.min || ad.offer.price === DEFAULT_VALUE;
     case 'middle':
-      return ad.offer.price > PRICE_VALUE.min && ad.offer.price <= PRICE_VALUE.max;
+      return ad.offer.price > PRICE_VALUE.min && ad.offer.price <= PRICE_VALUE.max || ad.offer.price === DEFAULT_VALUE;
     case 'high':
-      return ad.offer.price > PRICE_VALUE.max;
+      return ad.offer.price > PRICE_VALUE.max || ad.offer.price === DEFAULT_VALUE;
   }
 };
 
