@@ -4,7 +4,7 @@ import {setAdPins} from './map.js';
 import {getData} from './api.js';
 import {setUserFormSubmit} from './form-validate.js';
 import {showAlert, showSuccess, showError} from './popup.js';
-import {setChangeEventOnFilter, filterOffers } from './filter.js';
+import {setChangeEventOnFilter, getFilterOffers } from './filter.js';
 import {debounce} from './util.js';
 
 ////загрузка карты
@@ -25,7 +25,7 @@ getData((offers) => {
   setAdPins(offers);
   setChangeEventOnFilter(
     debounce(() => {
-      setAdPins(offers.filter(filterOffers));
+      setAdPins(offers.filter(getFilterOffers));
     })
   );
 }, () => {
