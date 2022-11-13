@@ -6,6 +6,7 @@ import {setUserFormSubmit} from './form-validate.js';
 import {showAlert, showSuccess, showError} from './popup.js';
 import {setChangeEventOnFilter, getFilterOffers } from './filter.js';
 import {debounce} from './util.js';
+import './pictures.js';
 
 ////загрузка карты
 setOnMapLoad(()=> {
