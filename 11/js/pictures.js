@@ -1,4 +1,5 @@
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+const DEFAULT_AVATAR = 'img/muffin-grey.svg';
 
 const fileChooserAvatar = document.querySelector('.ad-form__field input[type=file]');
 const previewAvatar = document.querySelector('.ad-form-header__preview img');
@@ -23,11 +24,11 @@ fileChooserPhoto.addEventListener('change', () => {
   const fileName = file.name.toLowerCase();
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
+  previewphoto.innerHTML = '';
   const imagesHouse = document.createElement('img');
-  imagesHouse.style.width = '150px';
   imagesHouse.alt = 'Фотография жилья';
-  imagesHouse.width = '100';
-  imagesHouse.height = '100';
+  imagesHouse.style.maxWidth = '100%';
+  imagesHouse.style.height = 'auto';
   imagesHouse.style.borderRadius = '5px';
 
   if (matches) {
@@ -39,3 +40,4 @@ fileChooserPhoto.addEventListener('change', () => {
 });
 
 
+export {DEFAULT_AVATAR, previewphoto, previewAvatar };

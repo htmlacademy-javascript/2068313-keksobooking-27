@@ -60,7 +60,7 @@ const getFilterOffers = (ad) =>
   getFilterType(ad) && getFilterPrice(ad) && getFilterRooms(ad) && getFilterGuests(ad) && getFilterFeatures(ad);
 
 
-/// фуекция обработчик для вскх полей фильтра
+/// функция обработчик для всех полей фильтра
 
 const setChangeEventOnFilter = (cb) => {
 

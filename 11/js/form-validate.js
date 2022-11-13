@@ -1,4 +1,5 @@
 import {sendData} from './api.js';
+import {DEFAULT_AVATAR, previewphoto, previewAvatar } from './pictures.js';
 
 const form = document.querySelector('.ad-form');
 const capasityField = form.querySelector('#capacity');
@@ -150,6 +151,18 @@ const unblockSubmitButton = () => {
   submitBtn.textContent = 'Сохранить';
 };
 
+//// кнопка очистки (возврат значений)
+const resetBtn = form.querySelector('.ad-form__reset');
+const resetForm = () => {
+  pristine.reset();
+  form.reset();
+  previewphoto.innerHTML = '';
+  previewAvatar.src = DEFAULT_AVATAR;
+  price.placeholder = typeofHouseOption[typeOfHouse.value];
+  sliderElement.noUiSlider.set(typeofHouseOption[typeOfHouse.value]);
+};
+
+resetBtn.addEventListener('click', resetForm);
 
 /////отправка данных по кнопке
 
