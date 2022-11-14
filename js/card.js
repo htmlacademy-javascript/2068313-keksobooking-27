@@ -56,7 +56,7 @@ const renderPhotos = (items, elem) => {
 };
 
 const renderCard = (arr) => {
-  const fragment = document.createDocumentFragment();
+
   const element = popup.cloneNode(true);
   element.querySelector('.popup__avatar').src = arr.author.avatar;
   element.querySelector('.popup__text--address').textContent = arr.offer.adress;
@@ -78,8 +78,7 @@ const renderCard = (arr) => {
   const photo = element.querySelector('.popup__photos');
   renderPhotos(arr.offer.photos, photo);
 
-  fragment.appendChild(element);
-  return fragment;
+  return element;
 };
 
 export {renderCard};

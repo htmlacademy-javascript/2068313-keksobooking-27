@@ -4,7 +4,9 @@ import {setAdPins} from './map.js';
 import {getData} from './api.js';
 import {setUserFormSubmit} from './form-validate.js';
 import {showAlert, showSuccess, showError} from './popup.js';
-
+import {setChangeEventOnFilter, getFilterOffers } from './filter.js';
+import {debounce} from './util.js';
+import './pictures.js';
 
 ////загрузка карты
 setOnMapLoad(()=> {
@@ -16,9 +18,17 @@ setOnMapLoad(()=> {
 formDisable();
 initMap(startCoordinate);
 
-//// получение данных
-getData(setAdPins, showError);
-
 /// отпрака данных
 setUserFormSubmit(showSuccess, showAlert);
 
+//получение данных и отриссовка меток с фильтрацией
+getData((offers) => {
+  setAdPins(offers);
+  setChangeEventOnFilter(
+    debounce(() => {
+      setAdPins(offers.filter(getFilterOffers));
+    })
+  );
+}, () => {
+  showError('Не удалось получить похожие объявления. Попробуй еще раз!');
+});
