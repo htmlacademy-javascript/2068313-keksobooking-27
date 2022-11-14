@@ -40,4 +40,4 @@ fileChooserPhoto.addEventListener('change', () => {
 });
 
 
-export {DEFAULT_AVATAR, previewphoto, previewAvatar };
+export {DEFAULT_AVATAR, previewphoto, previewAvatar};
