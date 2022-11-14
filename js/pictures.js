@@ -3,7 +3,10 @@ const DEFAULT_AVATAR = 'img/muffin-grey.svg';
 
 const fileChooserAvatar = document.querySelector('.ad-form__field input[type=file]');
 const previewAvatar = document.querySelector('.ad-form-header__preview img');
+const fileChooserPhoto = document.querySelector('.ad-form__upload input[type=file]');
+const previewphoto = document.querySelector('.ad-form__photo');
 
+///превью автарки
 fileChooserAvatar.addEventListener('change', () => {
   const file = fileChooserAvatar.files[0];
   const fileName = file.name.toLowerCase();
@@ -15,9 +18,7 @@ fileChooserAvatar.addEventListener('change', () => {
   }
 });
 
-const fileChooserPhoto = document.querySelector('.ad-form__upload input[type=file]');
-const previewphoto = document.querySelector('.ad-form__photo');
-
+///превью фотографии жилья
 fileChooserPhoto.addEventListener('change', () => {
 
   const file = fileChooserPhoto.files[0];

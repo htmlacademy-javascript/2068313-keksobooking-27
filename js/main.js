@@ -26,7 +26,7 @@ getData((offers) => {
   setAdPins(offers);
   setChangeEventOnFilter(
     debounce(() => {
-      setAdPins(offers.filter(getFilterOffers));
+      setAdPins(getFilterOffers(offers));
     })
   );
 }, () => {
