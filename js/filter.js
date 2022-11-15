@@ -4,6 +4,8 @@ const PRICE_VALUE = {
   max: 50000,
 };
 
+const SIMILAR_AD_COUNT = 10;
+
 const filterTypeField = document.querySelector('#housing-type');
 const filterPriceField = document.querySelector('#housing-price');
 const filterRoomsField = document.querySelector('#housing-rooms');
@@ -56,9 +58,26 @@ const getFilterFeatures = (ad) => Array.from(features)
 
 /// функция со всеми функциями фильтрации
 
-const getFilterOffers = (ad) =>
-  getFilterType(ad) && getFilterPrice(ad) && getFilterRooms(ad) && getFilterGuests(ad) && getFilterFeatures(ad);
+const getFilterOffers = (ads) => {
 
+  const filteredData = [];
+  for (let i = 0; i < ads.length; i++) {
+    const ad = ads[i];
+    if (
+      getFilterType(ad) &&
+      getFilterPrice(ad) &&
+      getFilterRooms(ad) &&
+      getFilterGuests(ad) &&
+      getFilterFeatures(ad)
+    ) {
+      filteredData.push(ad);
+    }
+    if (filteredData.length === SIMILAR_AD_COUNT) {
+      break;
+    }
+  }
+  return filteredData;
+};
 
 /// функция обработчик для всех полей фильтра
 
