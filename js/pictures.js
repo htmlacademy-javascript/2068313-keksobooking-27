@@ -4,7 +4,7 @@ const DEFAULT_AVATAR = 'img/muffin-grey.svg';
 const fileChooserAvatar = document.querySelector('.ad-form__field input[type=file]');
 const previewAvatar = document.querySelector('.ad-form-header__preview img');
 const fileChooserPhoto = document.querySelector('.ad-form__upload input[type=file]');
-const previewphoto = document.querySelector('.ad-form__photo');
+const previewPhoto = document.querySelector('.ad-form__photo');
 
 ///превью автарки
 fileChooserAvatar.addEventListener('change', () => {
@@ -25,7 +25,7 @@ fileChooserPhoto.addEventListener('change', () => {
   const fileName = file.name.toLowerCase();
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
-  previewphoto.innerHTML = '';
+  previewPhoto.innerHTML = '';
   const imagesHouse = document.createElement('img');
   imagesHouse.alt = 'Фотография жилья';
   imagesHouse.style.maxWidth = '100%';
@@ -36,9 +36,9 @@ fileChooserPhoto.addEventListener('change', () => {
     imagesHouse.src = URL.createObjectURL(file);
   }
 
-  previewphoto.append(imagesHouse);
+  previewPhoto.append(imagesHouse);
 
 });
 
 
-export {DEFAULT_AVATAR, previewphoto, previewAvatar };
+export {DEFAULT_AVATAR, previewPhoto, previewAvatar };
