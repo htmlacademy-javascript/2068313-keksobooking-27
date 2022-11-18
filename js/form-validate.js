@@ -1,5 +1,5 @@
 import {sendData} from './api.js';
-import {DEFAULT_AVATAR, previewphoto, previewAvatar } from './pictures.js';
+import {DEFAULT_AVATAR, previewPhoto, previewAvatar } from './pictures.js';
 import {resetMainMark} from './map.js';
 
 const form = document.querySelector('.ad-form');
@@ -158,7 +158,7 @@ const resetForm = () => {
   pristine.reset();
   form.reset();
   resetMainMark();
-  previewphoto.innerHTML = '';
+  previewPhoto.innerHTML = '';
   previewAvatar.src = DEFAULT_AVATAR;
   price.placeholder = typeofHouseOption[typeOfHouse.value];
   sliderElement.noUiSlider.set(typeofHouseOption[typeOfHouse.value]);
