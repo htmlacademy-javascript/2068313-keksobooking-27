@@ -35,7 +35,7 @@ const showSuccess = () => {
   document.body.appendChild(successPopup);
 
 
-  /////при показе этого сообщения данные формы возвращаются обратно без обновления
+  //////при показе этого сообщения данные формы возвращаются обратно без обновления
 
   document.querySelector('.ad-form').reset();
   resetFilter();
