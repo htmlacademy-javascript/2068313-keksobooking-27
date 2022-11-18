@@ -1,8 +1,9 @@
 import {sendData} from './api.js';
 import {DEFAULT_AVATAR, previewphoto, previewAvatar } from './pictures.js';
+import {resetMainMark} from './map.js';
 
 const form = document.querySelector('.ad-form');
-const capasityField = form.querySelector('#capacity');
+const capacityField = form.querySelector('#capacity');
 const roomField = form.querySelector('#room_number');
 const submitBtn = form.querySelector('.ad-form__submit');
 
@@ -27,18 +28,18 @@ const pristine = new Pristine(form, {
   errorTextClass: 'ad-form__element--invalid',
 }, true);
 
-const validateCapasity = () => roomsOption[roomField.value].includes(capasityField.value);
+const validateCapasity = () => roomsOption[roomField.value].includes(capacityField.value);
 
 
 const getCapacityErrorMessage = () =>
-  `Для указанного колличества гостей требуется ${capacityOption[capasityField.value].join(' или ')} комнат.`;
+  `Для указанного колличества гостей требуется ${capacityOption[capacityField.value].join(' или ')} комнат.`;
 
 
 const getRoomsErrorMessage = () =>
   `указанное колличество комнат вмещает ${roomsOption[roomField.value].join(' или ')} гостей.`;
 
 pristine.addValidator(
-  capasityField,
+  capacityField,
   validateCapasity,
   getCapacityErrorMessage,
 );
@@ -129,14 +130,14 @@ timeOut.addEventListener('change', getTimeInChange);
 
 //////////Вызовы валидации
 
-capasityField.addEventListener('change', () => {
-  pristine.validate(capasityField);
+capacityField.addEventListener('change', () => {
+  pristine.validate(capacityField);
   pristine.validate(roomField);
 });
 
 roomField.addEventListener('change', () => {
   pristine.validate(roomField);
-  pristine.validate(capasityField);
+  pristine.validate(capacityField);
 });
 
 ///// блокировка кнопки при отправке
@@ -156,6 +157,7 @@ const resetBtn = form.querySelector('.ad-form__reset');
 const resetForm = () => {
   pristine.reset();
   form.reset();
+  resetMainMark();
   previewphoto.innerHTML = '';
   previewAvatar.src = DEFAULT_AVATAR;
   price.placeholder = typeofHouseOption[typeOfHouse.value];

@@ -1,4 +1,4 @@
-import {formActive, formDisable, setAdress} from'./form.js';
+import {formActive, formDisable, setAddress} from'./form.js';
 import {initMap, setOnMapLoad, setOnMainPinMove, startCoordinate} from './map.js';
 import {setAdPins} from './map.js';
 import {getData} from './api.js';
@@ -10,8 +10,8 @@ import './pictures.js';
 
 ////загрузка карты
 setOnMapLoad(()=> {
-  setOnMainPinMove(setAdress);
-  setAdress(startCoordinate);
+  setOnMainPinMove(setAddress);
+  setAddress(startCoordinate);
   formActive();
 });
 

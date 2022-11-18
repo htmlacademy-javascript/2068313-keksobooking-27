@@ -25,8 +25,8 @@ const formActive = () => {
 
 formActive();
 
-const setAdress = (coordinates) => {
+const setAddress = (coordinates) => {
   adress.value = `${coordinates.lat.toFixed(NUMBER_POINT)}, ${coordinates.lng.toFixed(NUMBER_POINT)}`;
 };
 
-export {formActive, formDisable, setAdress};
+export {formActive, formDisable, setAddress};
