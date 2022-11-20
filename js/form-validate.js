@@ -1,11 +1,7 @@
 import {sendData} from './api.js';
 import {DEFAULT_AVATAR, previewPhoto, previewAvatar } from './pictures.js';
 import {resetMainMark} from './map.js';
-
-const form = document.querySelector('.ad-form');
-const capacityField = form.querySelector('#capacity');
-const roomField = form.querySelector('#room_number');
-const submitBtn = form.querySelector('.ad-form__submit');
+import {resetFilter} from './filter.js';
 
 const roomsOption = {
   1 : ['1'],
@@ -20,6 +16,10 @@ const capacityOption = {
   2 : ['1', '2'],
   3 : ['3', '2', '1'],
 };
+const form = document.querySelector('.ad-form');
+const capacityField = form.querySelector('#capacity');
+const roomField = form.querySelector('#room_number');
+const submitBtn = form.querySelector('.ad-form__submit');
 
 
 const pristine = new Pristine(form, {
@@ -164,7 +164,11 @@ const resetForm = () => {
   sliderElement.noUiSlider.set(typeofHouseOption[typeOfHouse.value]);
 };
 
-resetBtn.addEventListener('click', resetForm);
+resetBtn.addEventListener('click', (evt)=> {
+  evt.preventDefault();
+  resetForm();
+  resetFilter();
+});
 
 /////отправка данных по кнопке
 
