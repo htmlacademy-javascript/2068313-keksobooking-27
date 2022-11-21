@@ -1,9 +1,9 @@
 import './form-validate.js';
 
+const NUMBER_POINT = 5;
 const form = document.querySelector('.ad-form');
 const fieldsets = form.querySelectorAll('fieldset');
 const adress = form.querySelector('#address');
-const NUMBER_POINT = 5;
 
 const formDisable = () => {
   form.classList.add('ad-form--disabled');
