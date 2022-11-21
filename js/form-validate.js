@@ -16,6 +16,7 @@ const capacityOption = {
   2 : ['1', '2'],
   3 : ['3', '2', '1'],
 };
+
 const form = document.querySelector('.ad-form');
 const capacityField = form.querySelector('#capacity');
 const roomField = form.querySelector('#room_number');
