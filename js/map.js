@@ -1,11 +1,11 @@
 import { renderCard } from './card.js';
 
+const OFFERS_COUNT = 10;
 const startCoordinate = {
   lat: 35.66023,
   lng: 139.73007,
 };
 
-const OFFERS_COUNT = 10;
 
 const map = L.map('map-canvas');
 const markerGroup = L.layerGroup().addTo(map);
